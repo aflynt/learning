@@ -1,0 +1,32 @@
+### commands ###
+
+let ctrl-b == *
+
+SESSIONS
+================================================
+
+tumx new -s [name_of_session]
+
+tmux ls         == show current sessions
+
+tmux attach-session -t 3
+tmux a #        == attach to last session
+tmux a -t [name_of_session]
+
+* d  detatch
+
+PANES
+================================================
+
+* "       == split horizontally
+* %       == split vertically
+* [arrow] == move up dn left right
+
+*: resize-pane -D 2   or  [-U, -D, -L, -R]
+
+CUSTOMIZATION
+================================================
+
+make a ~/.tmux.conf
+source with tmux source-file ~/.tmux.conf
+
