@@ -2,9 +2,9 @@
 
 let ctrl-b == *
 
+
 SESSIONS
 ================================================
-
 tumx new -s [name_of_session]
 
 tmux ls         == show current sessions
@@ -15,18 +15,27 @@ tmux a -t [name_of_session]
 
 * d  detatch
 
+
+WINDOWS
+================================================
+tmux new-window (* c) == create a new window
+tmux select-window -t :0-9 (* 0-9) == move to window[i]
+tmux rename-window (* ,) == rename the current window
+
+
 PANES
 ================================================
-
 * "       == split horizontally
 * %       == split vertically
 * [arrow] == move up dn left right
 
 *: resize-pane -D 2   or  [-U, -D, -L, -R]
 
+
+
+
 CUSTOMIZATION
 ================================================
-
 make a ~/.tmux.conf
 source with tmux source-file ~/.tmux.conf
 
