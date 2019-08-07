@@ -1,0 +1,273 @@
+\documentclass[ignorenonframetext,]{beamer}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{adjustbox}
+\ifxetex
+  \usepackage{fontspec,xltxtra,xunicode}
+  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+\else
+  \ifluatex
+    \usepackage{fontspec}
+    \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+  \else
+    \usepackage[utf8]{inputenc}
+  \fi
+\fi
+
+%\usetheme{Boadilla} %pointless
+%\usetheme{CambridgeUS} %pointless
+%\usetheme{Montpellier} %pointless
+%\usetheme{Dresden} %good but vertically short
+\usetheme{Darmstadt} %GOOD
+%\usetheme{Berlin}
+%\usetheme{Warsaw}
+%\usetheme{Frankfurt}
+%\usecolortheme{seahorse}
+%\usecolortheme{fly}  % GREY
+%\usecolortheme{seagull}
+%\usecolortheme{rose}
+%\usecolortheme{orchid}
+\usefonttheme{structurebold}
+
+%\setbeamerfont{title}{shape=\itshape,family=\rmfamily}
+%\setbeamercolor{title}{fg=red!80!black}
+%\setbeamercolor{title}{fg=red!80!black,bg=red!20!black}
+
+% Comment these out if you don't want a slide with just the
+% part/section/subsection/subsubsection title:
+\AtBeginPart{
+  \let\insertpartnumber\relax
+  \let\partname\relax
+  \frame{\partpage}
+}
+%\AtBeginSection{
+%  \let\insertsectionnumber\relax
+%  \let\sectionname\relax
+%  \frame{\sectionpage}
+%}
+%\AtBeginSubsection{
+%  \let\insertsubsectionnumber\relax
+%  \let\subsectionname\relax
+%  \frame{\subsectionpage}
+%}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\setcounter{secnumdepth}{0}
+
+\title{Contraction Optimization Summary}
+\author{Austin Flynt}
+\date{August 8, 2019}
+
+\begin{document}
+
+
+\begin{frame}
+  \titlepage
+  %\frametitle{\title}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Outline}
+  \tableofcontents
+\end{frame}
+
+\section{Introduction}\label{intro}
+\subsection{}
+\begin{frame}[t]
+  \frametitle{Overview of the Problem}
+  \begin{itemize}
+    \itemsep1pt\parskip0pt\parsep0pt
+    \item There is a need for automated optimization capabilities
+    \item such tools have historically been too \alert{costly} and/or not
+          generalized enough
+    \item need and integrated platform to automatically test geometry in CFD
+  \end{itemize}
+\end{frame}
+
+\section{Usage}\label{usage}
+\subsection{}
+\begin{frame}[t]
+  \frametitle{Using Optuna}
+  \begin{itemize}
+    \itemsep1pt\parskip0pt\parsep0pt
+    \item 1 what a show that identified in
+    \item 2 again that identified in
+    \item 3 twice that identified in
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Workflow}
+  \begin{columns}[t]
+    \begin{column}{0.7\textwidth}
+      \adjincludegraphics[width=1.0\linewidth,
+      valign=t]{../figures/trialPlot_unsorted.png}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{itemize}
+        \item define objective function within \texttt{def f(trial):}
+      \item specify number of trials, $N_{trials}$
+      \item call optimize to execute function $N_{trials}$ times
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% blocks
+\begin{frame}[fragile,t]
+  \frametitle{Using Star-CCM+}
+    \begin{center}
+      \includegraphics[height=2.0in]{../figures/trialPlot_unsorted.png}
+    \end{center}
+    how are there answers
+\end{frame}
+
+\begin{frame}
+  \frametitle{Two Columns}
+  \begin{columns}[c]
+    \begin{column}{1.5in}
+      \begin{itemize}
+        \item Practical \TeX\ 2005\\
+        \item Practical \TeX\ 2005\\
+        \item Practical \TeX\ 2005
+      \end{itemize}
+    \end{column}
+    \begin{column}{3.0in}
+      \framebox{\includegraphics[width=3.0in]{../figures/trialPlot_unsorted.png}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\subsection{}
+\begin{frame}
+  \frametitle{Using Rhino}
+  \begin{itemize}
+    \itemsep1pt\parskip0pt\parsep0pt
+    \item 1 what a show that identified in
+    \item 2 again that identified in
+    \item 3 twice that identified in
+  \end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}[fragile,t]
+  \frametitle{Using Star-CCM+}
+  \begin{itemize}
+    \itemsep1pt\parskip0pt\parsep0pt
+    \item 1 what a show that identified in
+    \item 2 again that identified in
+    \item 3 twice that identified in
+  \end{itemize}
+\end{frame}
+
+\section{Testing}\label{testing}
+\subsection{}
+% blocks
+\begin{frame}[fragile,t]
+  \frametitle{Using Star-CCM+}
+  \begin{block}{Answers}
+    how are there answers
+  \end{block}
+  \pause
+  \begin{block}{open questions}
+    how are there answers
+  \end{block}
+\end{frame}
+
+\subsection{}
+% nested items
+\begin{frame}
+  \frametitle{nested items}
+  \begin{itemize}
+    \item Answered questions
+      \begin{itemize}
+        \item how may primes?
+      \end{itemize}
+    \item Open Qs
+      \begin{itemize}
+        \item is it valid?
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+\subsection{}
+\begin{frame}
+  \frametitle{Whats Still To Do?}
+  \begin{columns}
+    \column{.5\textwidth}
+    \begin{block}{Answered Questions}
+      How many primes are there?
+    \end{block}
+    \pause
+    \column{.5\textwidth}
+    \begin{block}{Open Questions}
+      Is every even number the sum of two primes?
+    \end{block}
+  \end{columns}
+\end{frame}
+
+\subsection{}
+\begin{frame}[fragile]
+  \frametitle{verbatim code}
+  \begin{verbatim}
+  int main (void)
+  {
+    std::vector<bool> is_prime (100,true);
+    for( int i = 2; i < 100; i++)
+      std::cout << i << "is good" << endl;
+  }
+  \end{verbatim}
+\end{frame}
+
+\subsection{}
+\begin{frame}
+  \frametitle{Theorem}
+  \begin{theorem}
+    Average is always less than or equal to maximum value
+  \end{theorem}
+  \begin{proof}
+    \begin{enumerate}
+      \item<1-| alert@1> Suppose 1
+      \item<2-> Suppose 2
+      \item<3-> Suppose 3
+      \item<1-> thus x. \qedhere
+    \end{enumerate}
+  \end{proof}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Figure}
+  \begin{columns}[t]
+    \begin{column}{0.7\textwidth}
+      \adjincludegraphics[width=1.0\linewidth, valign=t]{../figures/trialPlot_100.png}
+    \end{column}
+    \begin{column}{0.3\textwidth}
+      \textbf{``The problem of distinguishing prime numbers
+                from composites, and of resolving composite numbers
+                into their prime factors, is one of the most important and
+                useful in all of arithmetic."}
+
+      \hfill-- Carl Friedrich Gauss
+    \end{column}
+  \end{columns}
+
+  \vspace*{10pt}
+
+  \begin{itemize}
+    \item Pollard's $p-1$ algorithm (1974)
+    \vspace*{10pt}
+    \item Quadratic Sieve (QS): Pomerance (1974)
+    \vspace*{10pt}
+    \item Quadratic Sieve (QS): Pomerance (1974)
+  \end{itemize}
+\end{frame}
+
+
+\end{document}
