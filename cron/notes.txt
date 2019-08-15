@@ -1,0 +1,53 @@
+
+# cron
+
+crond -c -h -i -n p -P -s
+
+cron is started from /etc/rc.d/init.d or /etc/init.d
+when clasical sysvinit scripts are used.
+
+if systemd is enabled, then unit files is installed into
+  /lib/systemd/system/crond.service
+
+and daemon is started by systemctl start crond.service
+
+it searches /var/spool/cron for crontab files named after accounts in
+/etc/passwd
+
+cron checks:
+
+/etc/crontab now days /etc/anacrontab
+/etc/cron.d/
+/var/spool/cron
+
+# USAGE
+============================================
+# crontab [-u user] file
+# crontab [-u user] [-l | -r | -e] [-i] [-s]
+# crontab -n [ hostname ]
+# crontab -c
+
+own files in /var/spool/cron
+
+<blank> dilimited fields
+1. min           [0,59]
+2. hr            [0,23]
+3. day of month  [1,31]
+4. month of year [1,12]
+5. day of week   [0,6] (0=sun)
+
+each pattern can be either:
+* == all valid values
+element
+list of elements separated by commas
+
+element == number or two numbers separated by hyphen
+3 || 1-9 (inclusive range)
+
+6. string executed by sh
+    cal %
+
+    % == <newline>
+    rest of line is stdin
+
+/home/flyntga/git/learning/cron
