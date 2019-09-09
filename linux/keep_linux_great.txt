@@ -1,0 +1,13 @@
+bret victor == advanced programming environments conflate the runtime with
+the devtime
+
+r0ml
+Robert M. Lefkowitz
+
+
+"Fight against modern laptop"
+hamish coleman
+
+battery stuff
+github.com/eigenmatt/mec-tools
+
