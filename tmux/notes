@@ -39,3 +39,4 @@ CUSTOMIZATION
 make a ~/.tmux.conf
 source with tmux source-file ~/.tmux.conf
 
+# how to fix colors??
