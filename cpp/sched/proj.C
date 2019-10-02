@@ -1,22 +1,49 @@
 #include "proj.hpp"
 #include <iomanip>
+#include <iostream>
+#include <fstream>
+#include <sstream>
 
-ostream& operator<<(ostream& os, const project& cp)
-{
-  os << "<"
+// get project title as a string
+string project::proj_title(void) const{
+  std::stringstream buff;
+  buff << "<"
      << std::setw(6) << std::right
-     << cp.pnum << ">"
+     << pnum << ">"
      << " * |"
      << std::setw(20) << std::left
-     << cp.name
+     << name
      << "| "
-     << cp.tv.size()
+     << tv.size()
      << "\n";
+  return buff.str();
+}
+
+// write project to stream
+ostream& operator<<(ostream& os, const project& cp)
+{
+  os << cp.proj_title();
+
   for(const task& t : cp.tv)
-  {
     os << "     " << t << "\n";
-  }
+
   return os;
+}
+
+// save project to file
+void project::save_proj(string fname) const
+{
+  std::ofstream myfile;
+  myfile.open(fname, ios::out | ios::app);
+
+  if(myfile.is_open()){
+    myfile << proj_title();
+
+    for(const task& t : tv)
+      myfile << "     " << t << "\n";
+
+    myfile.close();
+  }
 }
 
 // remove back task

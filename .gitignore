@@ -1,4 +1,5 @@
 # Prerequisites
+*.dat
 *.d
 
 # Object files

@@ -34,6 +34,8 @@ class project {
     int num_tasks() const{
       return tv.size();
     }
+    void save_proj(string fname) const;
+    string proj_title() const;
 
   private:
     string name;
