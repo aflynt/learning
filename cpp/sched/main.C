@@ -27,7 +27,6 @@ int make_proj()
   vt.push_back(t6);
   vt.push_back(t7);
 
-
   // look for keyword
   cout << "looking for keyword" << endl;
   for(auto& t : vt)
@@ -78,33 +77,25 @@ void read_file(int argc, char * argv[])
   }
   cout << "you requested: " << name << endl;
 
+  // open file "name"
   ifstream myfile;
   myfile.open(name, ios::in);
 
-  string title;
-  if(myfile.is_open()){
-    // get title
-    getline(myfile,title);
-    cout << "T: " << title << endl;
-    string pnum = title.substr(1,6);
-    string pname = title.substr(12,20);
-    string ntasks = title.substr(title.size()-2,2);
+  if(myfile.is_open()) {
 
-    cout << "pname  [" << pname << "] "<< endl;
-    cout << " pnum  [" << pnum << "] "<< endl;
-    cout << "ntasks [" << ntasks << "] "<< endl;
-    pname.erase(pname.find_last_not_of(" \n\r\t")+1);
+    string title;
 
-    int n_pnum = stoi(pnum);
-    int n_size = stoi(ntasks);
+    // get line with project title
+    if(getline(myfile,title)){
 
-    cout << "proj name = " << pname << endl;
-    cout << "proj num  = " << n_pnum << endl;
-    cout << "task size = " << n_size << endl;
+      // make a new project from header
+      project p;
+      int n_size = read_proj_header(p, title);
 
-    // get tasks
-    while( getline(myfile,title)){
-      cout << title << endl;
+      cout << "proj num  =[" << p.get_pnum()  << "]" << endl;
+      cout << "pname     =[" << p.get_name() << "]" << endl;
+      cout << "task size =[" << n_size << "]" << endl;
+      
     }
     myfile.close();
   }
