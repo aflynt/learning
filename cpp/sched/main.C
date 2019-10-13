@@ -65,8 +65,8 @@ int make_proj()
   return 0;
 }
 
-void read_file(int argc, char * argv[]){
-
+void read_file(int argc, char * argv[])
+{
   string name;
 
   if(argc > 1){
@@ -110,11 +110,11 @@ void read_file(int argc, char * argv[]){
   }
 }
 
-int main(int argc, char * argv[]){
+int main(int argc, char * argv[])
+{
 
-  //make_proj();
-  read_file(argc, argv);
-
+  make_proj();
+  //read_file(argc, argv);
 
   return 0;
 }

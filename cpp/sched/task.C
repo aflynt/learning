@@ -18,6 +18,10 @@ ostream& operator<<(ostream& os, const task& cp)
      << std::setw(2) << cp.priority;
   return os;
 }
+
+//task task::get_task(string taskstring){
+//}
+
 //
 // prefix increment operator
 task& task::operator++(){

@@ -37,10 +37,7 @@ void project::save_proj(string fname) const
   myfile.open(fname, ios::out | ios::app);
 
   if(myfile.is_open()){
-    myfile << proj_title();
-
-    for(const task& t : tv)
-      myfile << "     " << t << "\n";
+    myfile << *this;
 
     myfile.close();
   }
