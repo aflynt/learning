@@ -54,6 +54,8 @@ class task {
     }
 
     //methods
+    void read_task_header(const string hdr);
+
     int get_priority(void) const{
       return priority;
     }
@@ -120,5 +122,6 @@ class task {
     int hours;
     bool status;
 };
+
 
 #endif

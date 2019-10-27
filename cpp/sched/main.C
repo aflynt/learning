@@ -5,6 +5,60 @@
 #include <fstream>
 #include <algorithm>
 
+
+project ask_for_proj()
+{
+  string name;
+  int num;
+
+  cout << "ENTER project name : ";
+  cin >> name;
+  cout << "ENTER project #    : ";
+  cin >> num;
+  project pj(name, num);
+
+  return pj;
+}
+
+project create_project()
+{
+
+  project pj = ask_for_proj();
+  cout << "created pj = " << pj << endl;
+
+  int addTask;
+  string prompt = "add task? (1=yes): ";
+  cout << prompt;
+  cin >> addTask;
+
+  while( addTask == 1){
+    char tname[256];
+    int tpriority;
+    int thours;
+
+    cout << "ENTER task name : " << endl;
+    cin.ignore();
+    std::cin.getline(tname, 256);
+    //get_full_line(cin, tname);
+    cout << "tname = " << tname << endl;
+    //cin >> tname;
+
+    cout << "ENTER priority #: ";
+    cin >> tpriority;
+
+    cout << "ENTER hours    #: ";
+    cin >> thours;
+
+    task t(tname, tpriority, thours, false);
+    pj.add_task(t);
+
+    cout << prompt;
+    cin >> addTask;
+  }
+
+  return pj;
+}
+
 int make_proj()
 {
   project p1("mcl", 95792);
@@ -46,8 +100,6 @@ int make_proj()
     p1.add_task(t);
     //cout << t << endl;
   }
-  // save project to file
-  p1.save_proj(p1.get_name()+".dat");
 
   cout << "before loop" << endl;
   cout << p1 << endl;
@@ -64,16 +116,53 @@ int make_proj()
   return 0;
 }
 
-void read_file(int argc, char * argv[])
+void save_projects(const vector<project> p)
+{
+  // save projects to file
+  for(const project& pi : p){
+    pi.save_proj("projects.dat");
+    //p1.save_proj(p1.get_name()+".dat");
+  }
+}
+
+void print_projects(const vector<project>& p)
+{
+  // save projects to file
+  for(const project& pi : p){
+    cout << pi << endl;
+  }
+}
+
+void edit_project(const vector<project>& p)
+{
+  cout << "here are the names of all the projects" << endl;
+  // save projects to file
+  for(const project& pi : p){
+    cout << pi.get_pnum() << " " << pi.get_name() << endl;
+  }
+
+  cout << "\nWhich project number would you like to edit? ";
+  int choice = 0;
+  cin >> choice;
+  for(const project& pi : p){
+    if (choice == pi.get_pnum())
+    {
+      cout << "we found your choice of the following: \n";
+      cout << pi << endl;
+    }
+  }
+
+}
+
+vector<project> read_file(int argc, char * argv[])
 {
   string name;
 
   if(argc > 1){
     name = argv[1];
-  }
-  else{
+  } else {
     cout << "Enter filename: ";
-    getline(cin,name);
+    cin >> name;
   }
   cout << "you requested: " << name << endl;
 
@@ -81,31 +170,86 @@ void read_file(int argc, char * argv[])
   ifstream myfile;
   myfile.open(name, ios::in);
 
+  vector<project> vp;
   if(myfile.is_open()) {
 
     string title;
-
     // get line with project title
-    if(getline(myfile,title)){
+    while(getline(myfile,title)){
 
       // make a new project from header
       project p;
       int n_size = read_proj_header(p, title);
 
-      cout << "proj num  =[" << p.get_pnum()  << "]" << endl;
-      cout << "pname     =[" << p.get_name() << "]" << endl;
-      cout << "task size =[" << n_size << "]" << endl;
-      
+      //cout << "proj num  =[" << p.get_pnum()  << "]" << endl;
+      //cout << "pname     =[" << p.get_name() << "]" << endl;
+      //cout << "task size =[" << n_size << "]" << endl;
+
+      for(int i = 0; i < n_size; ++i){
+        string tstring;
+        task t;
+        getline(myfile,tstring);
+        t.read_task_header(tstring);
+        //cout << t << endl;
+        p.add_task(t);
+      }
+      vp.push_back(p);
     }
     myfile.close();
   }
+
+  for(project& pi : vp){
+    cout << pi << endl;
+  }
+
+  return vp;
+}
+
+bool print_main_options()
+{
+  cout << "Choose from options below:" << endl;
+  cout << "0: create project" << endl;
+  cout << "1: read   file" << endl;
+  cout << "2: save   projects" << endl;
+  cout << "3: print  projects" << endl;
+  cout << "4: edit   project" << endl;
+  cout << "9: quit" << endl;
+  return true;
 }
 
 int main(int argc, char * argv[])
 {
+  vector<project> vp;
 
-  make_proj();
-  //read_file(argc, argv);
+  print_main_options();
+
+  int choice = 0;
+  while(cin >> choice){
+    project newp;
+    switch (choice){
+      case 0:  // create new project
+        newp = create_project();
+        vp.push_back(newp);
+        break;
+      case 1:  // read file
+        vp = read_file(argc, argv);
+        break;
+      case 2:  // save project
+        save_projects(vp);
+        break;
+      case 3:  // print project
+        print_projects(vp);
+        break;
+      case 4:  // edit project
+        edit_project(vp);
+        break;
+      case 9:   // quit
+        return 0;
+      default:
+        continue;
+    }
+    print_main_options();
+  }
 
   return 0;
 }

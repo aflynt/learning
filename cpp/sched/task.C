@@ -1,3 +1,4 @@
+#include "proj.hpp"
 #include "task.hpp"
 #include <iomanip>
 
@@ -19,8 +20,29 @@ ostream& operator<<(ostream& os, const task& cp)
   return os;
 }
 
-//task task::get_task(string taskstring){
-//}
+void task::read_task_header(const string hdr)
+{
+  // get project number
+  if( get_btw_str(hdr, "[" , "]") == "x"){
+    status = true;
+  } else {
+    status = false;
+  }
+
+  // get name
+  auto posBarL = hdr.find("|");
+  auto posBarR = hdr.find_last_of("|");
+  string lname = hdr.substr(posBarL+1, posBarR-(posBarL+1));
+  trim(lname);
+  name = lname;
+ 
+  // get hours and priority
+  auto posH = hdr.find_last_of("H");
+  auto posP = hdr.find_last_of("P");
+
+  hours    = stoi(hdr.substr(posH+2, 2));
+  priority = stoi(hdr.substr(posP+2, 2));
+}
 
 //
 // prefix increment operator
