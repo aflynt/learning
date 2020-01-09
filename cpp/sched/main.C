@@ -136,7 +136,7 @@ void print_projects(const vector<project>& p)
 void edit_project(const vector<project>& p)
 {
   cout << "here are the names of all the projects" << endl;
-  // save projects to file
+
   for(const project& pi : p){
     cout << pi.get_pnum() << " " << pi.get_name() << endl;
   }
