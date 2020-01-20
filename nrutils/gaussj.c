@@ -1,6 +1,6 @@
-#include <math.h>
-#include "fft.h"
 #include "nrutil.h"
+#include "linsolve.h"
+
 #define SWAP(a,b) {temp=(a); (a)=(b); (b) = temp;}
 
 void gaussj(float **a, int n, float **b, int m)
@@ -69,4 +69,16 @@ void gaussj(float **a, int n, float **b, int m)
   free_ivector(indxc,1,n);
 
   // end of the function
+}
+
+
+// print a matrix A[n][m]
+void prnMat(float **a, int n, int m)
+{
+  int i,j;
+  for(i = 1; i <= n; i++){
+    for(j = 1; j <= m; j++)
+      printf("%6.2f",a[i][j]);
+    putchar('\n');
+  }
 }

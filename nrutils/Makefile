@@ -19,8 +19,8 @@ ifeq ($(COMPILER),gnu)
   LDFLAGS = -lm
 endif
 
-HEADERS = fft.h nrutil.h
-SRCS = main.c fft.c nrutil.c io.c gaussj.c
+HEADERS = nrutil.h linsolve.h
+SRCS = main.c nrutil.c gaussj.c
 OBJECTS = $(SRCS:.C=.o)
 DISTFILES = $(SRCS) $(HEADERS) Makefile
 
