@@ -1,12 +1,13 @@
 #include "linsolve.h"
 
+#if 0
 
-int main(int argc, char *argv[])
+int main_gj(int argc, char *argv[])
 {
   int i, j, k;
 
   float **a;
-  float **b;
+  float *b;
   int n = 3;
   int m = 1;
   a = matrix(1,n,1,n);
@@ -51,4 +52,64 @@ int main(int argc, char *argv[])
 
   return 0;
 }
+#endif
 
+int main(int argc, char *argv[])
+{
+  int i, j, k;
+
+  float **a;
+  float *b;
+  float d;
+  int n = 3;
+  int m = 1;
+  int *indx;
+  indx = ivector(1,n);
+  a = matrix(1,n,1,n);
+  b = vector(1,n);
+
+  a[1][1] = 2.0;
+  a[1][2] = 1.0;
+  a[1][3] =-1.0;
+
+  a[2][1] =-3.0;
+  a[2][2] =-1.0;
+  a[2][3] = 2.0;
+
+  a[3][1] =-2.0;
+  a[3][2] = 1.0;
+  a[3][3] = 2.0;
+
+  b[1] =  8.0;
+  b[2] =-11.0;
+  b[3] = -3.0;
+
+
+  printf("\n*======== before\n");
+  printf("a\n");
+  prnMat(a,n,n);
+
+  printf("b\n");
+  for(i = 1; i <= n; i++)
+    printf("b[%d] = %6.2f\n",i,b[i]);
+
+  // compute solution to linear system
+  ludcmp(a,n,indx,&d);
+  lubksb(a,n,indx,b);
+  // answer x is given back in b
+  // original matrix a will be destroyed and turned into LU solution
+
+  printf("\n*======== after\n");
+  printf("a\n");
+  prnMat(a,n,n);
+
+  printf("b\n");
+  for(i = 1; i <= n; i++)
+    printf("b[%d] = %6.2f\n",i,b[i]);
+
+  free_matrix(a,1,n,1,n);
+  free_vector(b,1,n);
+  free_ivector(indx,1,n);
+
+  return 0;
+}
