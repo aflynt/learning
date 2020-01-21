@@ -20,7 +20,7 @@ ifeq ($(COMPILER),gnu)
 endif
 
 HEADERS = nrutil.h linsolve.h
-SRCS = main.c nrutil.c gaussj.c
+SRCS = main.c nrutil.c gaussj.c io.c
 OBJECTS = $(SRCS:.C=.o)
 DISTFILES = $(SRCS) $(HEADERS) Makefile
 

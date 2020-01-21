@@ -179,3 +179,33 @@ void lubksb(float **a, int n, int *indx, float *b)
     b[i] = sum/a[i][i];
   }
 }
+
+// uses LU Decomposition to invert a matrix Y = A^(-1) ,A[n][n]
+void invert_matrix(float **a, float **y, int n)
+{
+  // the matrix y will contain the inverse of the original matrix a, which
+  // will have been destroyed.
+  int i,j;
+  int *indx;
+  float *col;
+  float d;
+
+  indx = ivector(1,n);
+  col  =  vector(1,n);
+
+  // LU decompose just once 
+  ludcmp(a,n,indx,&d);
+
+  // Invert the matrix by columnes
+  for(j = 1; j <= n; j++){
+    for(i = 1; i <= n; i++)
+      col[i] = 0.0;
+    col[j] = 1.0;
+    lubksb(a,n,indx,col);
+    for(i = 1; i <= n; i++)
+      y[i][j] = col[i];
+  }
+
+  free_vector(col,1,n);
+  free_ivector(indx,1,n);
+}

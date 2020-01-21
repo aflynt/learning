@@ -12,10 +12,13 @@ void gaussj(float **a, int n, float **b, int m);
 // print a matrix A[n][m]
 void prnMat(float **a, int n, int m);
 
-//LU Decomposition
+// LU Decomposition
 void ludcmp(float **a, int n, int *indx, float *d);
 
 // LU back-substitution linear solver
 void lubksb(float **a, int n, int *indx, float b[]);
+//
+// uses LU Decomposition to invert a matrix Y = A^(-1) ,A[n][n]
+void invert_matrix(float **a, float **y, int n);
 
 #endif /* _GAUSSJ_H_ */
