@@ -1,0 +1,20 @@
+
+
+# 3
+
+# 4 == build toolbox
+
+VS Code
+code.visualstudio.com
+
+extensions
+  ESLint
+  Prettier
+  ES6 snippets == code fragment shortcuts
+
+nodejs.org
+  javascript runtime
+  environment...
+
+  nvm install node
+    
